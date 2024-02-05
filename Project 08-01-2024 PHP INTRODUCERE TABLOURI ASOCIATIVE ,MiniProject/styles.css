@@ -1,0 +1,14 @@
+.car {
+    height: 400px;
+    width: 400px;
+    background-color: #ccc;
+
+}
+
+.car img {
+    height: 210px;
+    width: 100%;
+    object-fit: cover;
+
+}
+

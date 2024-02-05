@@ -1,0 +1,15 @@
+CREATE TABLE products (
+product_id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(100) UNIQUE NOT NULL, 
+    price DOUBLE(20,2) NOT NULL,
+    url VARCHAR(200) NOT NULL 
+    
+);
+
+CREATE TABLE slides(
+slider_id INT PRIMARY KEY AUTO_INCREMENT,
+    url VARCHAR(300) UNIQUE NOT NULL,
+   product_id INT NOT NULL,
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+    
+); 

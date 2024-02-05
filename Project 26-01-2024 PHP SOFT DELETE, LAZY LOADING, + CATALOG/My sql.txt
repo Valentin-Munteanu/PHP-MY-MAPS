@@ -1,0 +1,28 @@
+ALTER TABLE products
+ADD hidden BOOLEAN DEFAULT 0
+
+Acest hidden a fost creat pentru tabelul de products, pentru ca ulterior
+ sa putem sa stergem produsul
+
+
+
+SELECT * FROM products INNER JOIN product_images WHERE products.id = product_images.product_id
+
+
+Selectam mai multe imagini pentru un produs
+GROUP_CONCAT = va concatina url produsului + url imaginii
+Prin aceasta verificare rezulta ca vom conecta id unui produs,
+cu imaginile, rezultaul va fi ca vom primi un produs cu mai multe
+imagini separate prin virgula  
+
+
+SELECT 
+products.id,
+products.title,
+products.price,
+GROUP_CONCAT(product_images.url) AS image_urls
+FROM products
+
+LEFT JOIN
+product_images ON products.id = product_images.product_id
+WHERE products.hidden = 0

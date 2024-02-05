@@ -1,0 +1,18 @@
+CREATE TABLE users(
+id INT PRIMARY KEY AUTO_INCREMENT,
+  login VARCHAR (100) NOT NULL UNIQUE,
+    email VARCHAR(200) NOT NULL,
+    password VARCHAR(200) NOT NULL, 
+    type ENUM ("client", "admin") DEFAULT 'client' NOT NULL 
+);
+
+CREATE TABLE products (
+id INT PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(100) NOT NULL UNIQUE,
+    description TEXT NOT NULL,
+    price DOUBLE (20,2) NOT NULL
+);
+
+
+
+ENUM VA ADAUGA MAI MULTE Valori , prin Defeault vom adauga prima valoare initiala 

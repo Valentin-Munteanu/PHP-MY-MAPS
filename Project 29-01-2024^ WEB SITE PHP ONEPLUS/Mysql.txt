@@ -1,0 +1,195 @@
+CREATE TABLE users(
+id INT PRIMARY KEY AUTO_INCREMENT,
+  login VARCHAR(100) NOT NULL UNIQUE,
+   password VARCHAR(100) NOT NULL UNIQUE,
+   email VARCHAR (200) NOT NULL UNIQUE,
+type ENUM ("client", "admin") DEFAULT 'client' NOT NULL 
+);
+
+
+
+CREATE TABLE phones(
+id INT PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(200) UNIQUE NOT NULL,
+    price DOUBLE(20,2)  NOT NULL,
+    description VARCHAR(200) NOT NULL
+);
+
+ALTER TABLE phones
+ADD hidden BOOLEAN DEFAULT 0
+
+
+
+
+
+CREATE TABLE imagesP (
+id INT PRIMARY KEY AUTO_INCREMENT,
+    url VARCHAR(255) NOT NULL, 
+    img_id INT NOT NULL,
+    FOREIGN KEY (img_id) REFERENCES phones(id)
+)
+
+
+$sqlPhones = "SELECT phones.id,
+phones.title,
+phones.price,
+phones.description,
+GROUP_CONCAT(imagesP.url) AS image_urls
+FROM phones
+
+LEFT JOIN
+imagesP ON phones.id = imagesP.img_id
+WHERE phones.hidden = 0 GROUP BY phones.id, phones.title,phones.description,phones.price
+
+";
+
+
+CREATE TABLE savesPhone(
+id INT PRIMARY KEY AUTO_INCREMENT,
+phone_id INT NOT NULL,
+    user_id INT NOT NULL,
+ FOREIGN KEY (phone_id) REFERENCES phones(id),
+   FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+
+
+$sql = "SELECT savesPhone.*, 
+                phones.id AS phone_id, 
+                phones.title, 
+                phones.price, 
+                phones.description, 
+                GROUP_CONCAT(imagesP.url) AS image_urls 
+        FROM savesPhone 
+        INNER JOIN phones ON phones.id = savesPhone.phone_id 
+        LEFT JOIN imagesP ON phones.id = imagesP.img_id AND savesPhone.user_id = ? 
+        GROUP BY savesPhone.id, phones.id, phones.title, phones.price, phones.description";
+
+
+
+
+CREATE TABLE cartPhone(
+id INT PRIMARY KEY AUTO_INCREMENT,
+phone_id INT NOT NULL,
+  user_id INT NOT NULL,
+   quantity INT NOT NULL DEFAULT 1,
+   FOREIGN KEY (phone_id) REFERENCES phones(id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+
+
+$sql = "SELECT cartPhone.*, 
+                phones.id AS phone_id, 
+                phones.title, 
+                phones.price, 
+                phones.description, 
+                GROUP_CONCAT(imagesP.url) AS image_urls 
+        FROM cartPhone 
+        INNER JOIN phones ON phones.id = cartPhone.phone_id 
+        LEFT JOIN imagesP ON phones.id = imagesP.img_id AND cartPhone.user_id = ? 
+        GROUP BY cartPhone.id, phones.id, phones.title, phones.price, phones.description";
+
+
+
+
+
+
+
+CREATE TABLE audio(
+id INT PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(200) UNIQUE NOT NULL,
+    price DOUBLE(20,2)  NOT NULL,
+    description VARCHAR(200) NOT NULL
+);
+
+
+
+
+ALTER TABLE audio
+ADD hidden BOOLEAN DEFAULT 0
+
+
+
+
+CREATE TABLE imagesAD (
+id INT PRIMARY KEY AUTO_INCREMENT,
+    url VARCHAR(255) NOT NULL, 
+    audios_id INT NOT NULL,
+    FOREIGN KEY (audios_id) REFERENCES audio(id)
+)
+
+
+
+$sqlPhones = "SELECT audio.id,
+audio.title,
+audio.price,
+audio.description,
+GROUP_CONCAT(imagesAD.url) AS image_urls
+FROM audio
+
+LEFT JOIN
+imagesAD ON audio.id = imagesAD.audios_id
+WHERE audio.hidden = 0 GROUP BY audio.id, audio.title,audio.description,audio.price
+
+";
+
+
+////// ?? ? ? ?? ?  ? ? 
+CREATE TABLE savesAudio(
+id INT PRIMARY KEY AUTO_INCREMENT,
+audio_id INT NOT NULL,
+    user_id INT NOT NULL,
+ FOREIGN KEY (audio_id) REFERENCES audio(id),
+   FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+./////// ? ? ? ? ?? ? ? ?
+
+
+
+
+
+CREATE TABLE tablet(
+id INT PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(200) UNIQUE NOT NULL,
+    price DOUBLE(20,2)  NOT NULL,
+    description VARCHAR(200) NOT NULL
+);
+ALTER TABLE tablet
+ADD hidden BOOLEAN DEFAULT 0
+
+
+
+
+CREATE TABLE imagesTB (
+id INT PRIMARY KEY AUTO_INCREMENT,
+    url VARCHAR(255) NOT NULL, 
+  tablete_id INT NOT NULL,
+    FOREIGN KEY (tablete_id) REFERENCES tablet(id)
+)
+
+
+
+
+
+
+
+CREATE TABLE accesories(
+id INT PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(200) UNIQUE NOT NULL,
+    price DOUBLE(20,2)  NOT NULL,
+    description VARCHAR(200) NOT NULL
+);
+
+ALTER TABLE accesories
+ADD hidden BOOLEAN DEFAULT 0
+
+
+
+CREATE TABLE imager (
+id INT PRIMARY KEY AUTO_INCREMENT,
+    url VARCHAR(255) NOT NULL, 
+ key_id INT NOT NULL,
+    FOREIGN KEY (key_id) REFERENCES accesories(id)
+)

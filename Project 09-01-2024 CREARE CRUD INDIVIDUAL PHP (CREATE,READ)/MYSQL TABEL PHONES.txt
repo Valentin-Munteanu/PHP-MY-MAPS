@@ -1,0 +1,11 @@
+CREATE TABLE creates(
+id INT PRIMARY KEY AUTO_INCREMENT,
+marca VARCHAR(150) NOT NULL ,
+  model VARCHAR (150) NOT NULL, 
+    culoare VARCHAR (150) NOT NULL,
+    pret DECIMAL (10,2),
+    stock boolean ,
+    datas DATE,
+    sistem VARCHAR(50) NOT NULL,
+image VARCHAR(300)
+);        

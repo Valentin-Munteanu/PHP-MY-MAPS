@@ -1,0 +1,14 @@
+CREATE TABLE products (
+productId INT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(150) NOT NULL,
+    price DOUBLE(20,2) NOT NULL,
+    description VARCHAR(500) NOT NULL
+); 
+
+CREATE TABLE product_images(
+productImageId int PRIMARY KEY AUTO_INCREMENT,
+    src VARCHAR(250) NOT NULL,
+    productId INT NOT NULL,
+    FOREIGN KEY(productId) REFERENCES products(productId)
+
+);

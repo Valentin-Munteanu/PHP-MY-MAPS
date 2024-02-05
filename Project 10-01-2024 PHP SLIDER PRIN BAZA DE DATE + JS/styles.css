@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#slider-wrapper {
+    height: 500px;
+    width: 700px;
+overflow: hidden;
+position: relative;
+}
+
+#slider {
+    height: 500px;
+    width: 700px;
+    display: flex;
+    /* overflow: hidden; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+}
+
+#slider a {
+    height: 100%;
+    flex: 0 0 700px;
+}
+
+#slider a img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+

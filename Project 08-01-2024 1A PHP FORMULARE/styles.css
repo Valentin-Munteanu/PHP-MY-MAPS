@@ -1,0 +1,82 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+
+}
+
+
+.form-holder {
+    width: 600px;
+    margin: 25px auto;
+
+}
+
+.form-holder form {
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+}
+
+.form-holder form div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+
+.form-holder form label, 
+.form-holder form input, 
+.form-holder form span ,
+.form-holder form button,
+.form-holder form option {
+    font-size: 19px;
+    font-weight: 400;
+
+}
+
+.form-holder form input,
+.form-holder form select,
+.form-holder form button {
+    padding: 10px 20px;
+    border: 0;
+    outline: 0;
+    background-color: #ececec;
+    border-radius: 5px;
+
+}
+
+.form-holder form button {
+    background-color: #000000;
+color: #fff;
+}
+
+
+input[type="file"] {
+    display: none;
+
+}
+
+.file-input {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #ececec;
+
+}
+
+.file-selector img {
+    height: 50px;
+    width: 50px;
+    object-fit: cover;
+
+
+}
+
+.file-selector {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
